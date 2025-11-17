@@ -1,5 +1,5 @@
 import LoginForm from "../components/LoginForm.jsx";
-export default function RegisterFormPage() {
+export default function LoginFormPage() {
   return (
     <div>
         <div className="flex justify-end">

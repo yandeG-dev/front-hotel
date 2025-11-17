@@ -37,7 +37,7 @@ const  handleSubmit=async (e)=>{
     console.log(data);
      if(reponse.ok){
       alert("Inscription réussie !");
-      navigate("/login");
+      navigate("/");
     }
   }  catch(error){
     console.error("Erreur: ",error)

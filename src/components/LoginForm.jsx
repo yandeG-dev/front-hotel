@@ -6,6 +6,11 @@ export default function LoginForm() {
     const navigate=useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
+         if( email.trim()==='' || password.trim()===''  ){
+      alert("Veuillez remplir tous les champs");
+      return;
+    }
+    
         try{
     const reponse=await fetch("https://projethotel-production.up.railway.app/api/auth/login",{
       method:"POST",
@@ -19,6 +24,9 @@ export default function LoginForm() {
      if(reponse.ok){
       alert("Connexion réussie !");
       navigate("/dashboard");
+    }else{
+      alert(data.message || "Email ou mot de passe incorrect. Si vous navez pas de compte, veuillez vous inscrire.");
+        return;
     }
   }  catch(error){
     console.error("Erreur: ",error)
