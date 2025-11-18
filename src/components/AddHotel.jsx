@@ -25,10 +25,14 @@ export default function AddHotel() {
     formData.append("cheminImage", imageFile);
 
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch(
         "https://projethotel-production.up.railway.app/api/hotels",
         {
           method: "POST",
+          headers: {
+        "Authorization": `Bearer ${token}`
+    },
           body: formData,
         }
       );

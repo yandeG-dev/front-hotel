@@ -22,6 +22,9 @@ export default function LoginForm() {
     const data=await reponse.json();
     console.log(data);
      if(reponse.ok){
+       localStorage.setItem("token", data.access_token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
       alert("Connexion réussie !");
       navigate("/dashboard");
     }else{

@@ -2,10 +2,22 @@ import { useNavigate } from "react-router-dom";
 
 export default function Sidebar({ children }) {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user")); 
+
+  
+  let user = null;
+  try {
+    const store = localStorage.getItem("user");
+    if (store && store !== "undefined") {
+      user = JSON.parse(store);
+    }
+  } catch (err) {
+     console.error(err);
+    user = null;
+  }
+
   const handleLogout = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("token"); 
+    localStorage.removeItem("token");
     navigate("/");
   };
 
@@ -13,11 +25,10 @@ export default function Sidebar({ children }) {
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
-   
+
         <nav className="navbar w-full bg-base-300 justify-between">
           <label htmlFor="my-drawer-4" className="btn btn-square btn-ghost">
-       
-           <p>Hotel</p>
+            <p>Hotel</p>
           </label>
 
           {user && (
@@ -34,7 +45,7 @@ export default function Sidebar({ children }) {
       <div className="drawer-side">
         <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
         <div className="flex min-h-full flex-col bg-base-200 w-64">
-    
+
           <ul className="menu p-2 grow">
             <li>
               <button onClick={() => navigate("/liste-hotel")}>

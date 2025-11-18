@@ -8,8 +8,17 @@ export default function ListHotel() {
   
   useEffect(() => {
     const fetchHotels = async () => {
+      const token = localStorage.getItem("token");
       try {
-        const res = await fetch("https://projethotel-production.up.railway.app/api/hotels");
+        const res = await fetch("https://projethotel-production.up.railway.app/api/hotels",
+           {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        }
+        );
+        
         const data = await res.json();
         console.log(data);
         setHotels(data);
@@ -28,9 +37,14 @@ export default function ListHotel() {
     if (!window.confirm("Voulez-vous vraiment supprimer cet hôtel ?")) return;
 
     try {
+      const token = localStorage.getItem("token");
       const res = await fetch(
         `https://projethotel-production.up.railway.app/api/hotels/${id}`,
-        { method: "DELETE" }
+        { method: "DELETE",
+           headers: {
+      "Authorization": `Bearer ${token}`
+    }
+         }
       );
       if (res.ok) setHotels(hotels.filter((h) => h.id !== id));
       else alert("Erreur lors de la suppression");
