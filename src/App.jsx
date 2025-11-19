@@ -6,7 +6,7 @@ import AddHotelPage from './pages/AddHotelPage.jsx'
 import ForgotPasswordPage from './pages/ForgotPasswordPage.jsx'
 import EditHotelPage from './pages/EditHotelPage.jsx'
 import ListeHotelPage from './pages/ListeHotelPage.jsx'
-
+import ResetPasswordPage from './pages/ResetPasswordPage.jsx'
 import DashboardPage from './pages/DashboardPage.jsx'
 function App() {
   return(
@@ -23,6 +23,9 @@ function App() {
 <Route path="/edit-hotel/:id" element={<EditHotelPage></EditHotelPage>}></Route>
 <Route path='/liste-hotel' element={<ListeHotelPage></ListeHotelPage>}></Route>
 <Route path='/dashboard' element={<DashboardPage></DashboardPage>}></Route>
+
+<Route path="/reset-password" element={<ResetPasswordPage />} />
+
 </Routes>
 </BrowserRouter>
     
