@@ -17,27 +17,58 @@ export default function EditHotel() {
 
   useEffect(() => {
     const fetchHotel = async () => {
-      const res = await fetch(
-        `https://projethotel-production.up.railway.app/api/hotels/${id}`
-      );
-      const data = await res.json();
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("Vous devez être connecté !");
+          navigate("/");
+          return;
+        }
 
-      setNomHotel(data.nomHotel);
-      setAddresse(data.addresse);
-      setPrixNuitee(data.prixNuitee);
-      setNumero(data.numero);
-      setEmail(data.email);
-      setDevise(data.devise);
-      setOldImage(data.cheminImage);
+        const res = await fetch(
+          `https://projethotel-production.up.railway.app/api/hotels/${id}`,
+          {
+            headers: {
+              "Authorization": `Bearer ${token}`,
+            },
+          }
+        );
 
-      setLoading(false);
+        if (!res.ok) {
+          alert("Impossible de charger les données de l'hôtel !");
+          navigate("/liste-hotel");
+          return;
+        }
+
+        const data = await res.json();
+
+        setNomHotel(data.nomHotel || "");
+        setAddresse(data.addresse || "");
+        setPrixNuitee(data.prixNuitee || "");
+        setNumero(data.numero || "");
+        setEmail(data.email || "");
+        setDevise(data.devise || "FCFA");
+        setOldImage(data.cheminImage || null);
+
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        alert("Erreur réseau !");
+      }
     };
 
     fetchHotel();
-  }, [id]);
+  }, [id, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Vous devez être connecté !");
+      navigate("/");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("nomHotel", nomHotel);
@@ -46,8 +77,8 @@ export default function EditHotel() {
     formData.append("numero", numero);
     formData.append("email", email);
     formData.append("devise", devise);
-
     formData.append("_method", "PUT");
+
     if (imageFile) formData.append("cheminImage", imageFile);
 
     try {
@@ -55,7 +86,10 @@ export default function EditHotel() {
         `https://projethotel-production.up.railway.app/api/hotels/${id}`,
         {
           method: "POST",
-          headers: { Accept: "application/json" },
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/json",
+          },
           body: formData,
         }
       );
@@ -64,12 +98,13 @@ export default function EditHotel() {
         alert("Hôtel modifié !");
         navigate("/liste-hotel");
       } else {
-        console.log(await res.text());
+        const errText = await res.text();
+        console.log(errText);
         alert("Erreur lors de la modification");
       }
     } catch (error) {
       console.error(error);
-      alert("Erreur réseau");
+      alert("Erreur réseau !");
     }
   };
 
@@ -81,9 +116,7 @@ export default function EditHotel() {
         onSubmit={handleSubmit}
         className="w-full max-w-4xl bg-white p-6 rounded-2xl shadow-2xl border space-y-6"
       >
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Modifier l’hôtel
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Modifier l’hôtel</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col">
