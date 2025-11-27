@@ -27,7 +27,7 @@ export default function AddHotel() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://https://projethotel-1.onrender.com/api/hotels",
+        "https://projethotel-1.onrender.com/api/hotels",
         {
           method: "POST",
           headers: {
