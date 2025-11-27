@@ -62,7 +62,7 @@ export default function AddHotel() {
       Ajouter un Hôtel
     </h2>
 
-    {/* Grid pour aligner les champs côte à côte sur desktop */}
+
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="flex flex-col">
         <label className="font-semibold mb-1">Nom hôtel</label>
