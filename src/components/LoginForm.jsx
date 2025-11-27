@@ -12,7 +12,7 @@ export default function LoginForm() {
     }
     
         try{
-    const reponse=await fetch("https://projethotel-production.up.railway.app/api/auth/login",{
+    const reponse=await fetch("https://projethotel-1.onrender.com/api/auth/login",{
       method:"POST",
       headers:{"content-type":"application/json"},
       body:JSON.stringify({email,password})

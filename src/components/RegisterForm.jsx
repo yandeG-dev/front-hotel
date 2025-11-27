@@ -26,7 +26,7 @@ const  handleSubmit=async (e)=>{
     }
    
   try{
-    const reponse=await fetch("https://projethotel-production.up.railway.app/api/auth/register",{
+    const reponse=await fetch("https://projethotel-1.onrender.com/api/auth/register",{
       method:"POST",
       headers:{"content-type":"application/json"},
       body:JSON.stringify({nom,email,password,password_confirmation})

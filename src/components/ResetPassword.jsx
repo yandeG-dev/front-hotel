@@ -26,7 +26,7 @@ export default function ResetPassword() {
 
     try {
       const response = await fetch(
-        "https://projethotel-production.up.railway.app/api/auth/reset-password",
+        "https://projethotel-1.onrender.com/api/auth/reset-password",
         {
           method: "POST",
           headers: { "content-type": "application/json" },

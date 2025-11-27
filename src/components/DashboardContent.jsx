@@ -11,7 +11,7 @@ export default function DashboardContent() {
       return;
     }
 
-    fetch("https://projethotel-production.up.railway.app/api/hotels", {
+    fetch("https://projethotel-1.onrender.com/api/hotels", {
       headers: {
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export default function DashboardContent() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log("Réponse API =", data); // pour vérifier
+        console.log("Réponse API =", data); 
 
         if (Array.isArray(data)) {
           setTotalHotels(data.length);
@@ -34,7 +34,7 @@ export default function DashboardContent() {
 
   return (
     <div className="justify-center items-center p-10">
-      <div className="card bg-base-100 w-80 shadow-md bg-green-400">
+      <div className="card bg-base-100 w-80 shadow-md ">
         <div className="card-body">
           <h2 className="card-title text-lg font-bold">Hôtels ajoutés</h2>
           <p className="text-4xl font-extrabold text-primary">{totalHotels}</p>

@@ -69,7 +69,7 @@ export default function ListHotel() {
         <div key={hotel.id} className="card w-80 bg-base-100 shadow-md">
           <figure>
             <img
-              src={`https://projethotel-production.up.railway.app/storage/${hotel.cheminImage}`}
+              src={`https://projethotel-1.onrender.com/storage/${hotel.cheminImage}`}
               alt={hotel.nomHotel}
               className="w-full h-50 object-cover"
             />

@@ -26,7 +26,7 @@ export default function EditHotel() {
         }
 
         const res = await fetch(
-          `https://projethotel-production.up.railway.app/api/hotels/${id}`,
+          `https://projethotel-1.onrender.com/api/hotels/${id}`,
           {
             headers: {
               "Authorization": `Bearer ${token}`,
