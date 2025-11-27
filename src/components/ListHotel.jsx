@@ -10,7 +10,7 @@ export default function ListHotel() {
     const fetchHotels = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await fetch("https://projethotel-production.up.railway.app/api/hotels",
+        const res = await fetch("https://projethotel-1.onrender.com/api/hotels",
            {
           method: "GET",
           headers: {
@@ -39,7 +39,7 @@ export default function ListHotel() {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `https://projethotel-production.up.railway.app/api/hotels/${id}`,
+        `https://projethotel-1.onrender.com/api/hotels/${id}`,
         { method: "DELETE",
            headers: {
       "Authorization": `Bearer ${token}`
